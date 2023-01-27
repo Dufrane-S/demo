@@ -42,6 +42,29 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- MySQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<!-- 제어판에서 MySQL 버전 참고 -->
+			<version>8.0.31</version>
+		</dependency>
+		<!-- Spring JDBC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<!-- Spring Boot 3.0.2 버전은 Spring Framework 6.0.4 사용, Link : https://spring.io/blog/2023/01/11/spring-framework-6-0-4-available-now -->
+			<version>6.0.4</version>
+		</dependency>
+		<!-- DataSource -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<!-- JDK 7이상, JDBC 4.1 이상이므로 dbcp2 -->
+			<version>2.9.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
