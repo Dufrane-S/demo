@@ -20,6 +20,21 @@ public class DBController {
     @GetMapping(value="/insert")
     public void insert(@RequestParam("id") int id, @RequestParam("name") String name) {
 
-        memberDAO.insertMember(id, name);
+        memberDAO.insert(id, name);
+    }
+
+    @GetMapping(value="/delete")
+    public void delete(@RequestParam("id") int id) {
+        memberDAO.delete(id);
+    }
+
+    @GetMapping(value="/update")
+    public void update(@RequestParam("id") int id, @RequestParam("newName") String newName) {
+        memberDAO.update(id, newName);
+    }
+
+    @RequestMapping("/")
+    public String helloWorld() {
+        return "DB";
     }
 }

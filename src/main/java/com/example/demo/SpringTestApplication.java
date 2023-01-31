@@ -14,6 +14,6 @@ public class SpringTestApplication {
 	//localhost:8080를 호출하면 helloWorld를 찍어주기 위한 함수
 	@RequestMapping("/")
 	public String helloWorld() {
-		return "helloWorld";
+		return "helloWorlddd";
 	}
 }
