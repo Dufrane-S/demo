@@ -15,14 +15,19 @@ public class MemberDAO {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public void insert(int id, String name) {
-        String insertMemberSQL = "Insert Into table1 Values(?, ?)";
-        jdbcTemplate.update(insertMemberSQL, id, name);
+    public void insert(MemberDTO memberDTO) {
+        String insertMemberSQL = "Insert Into table1 Values(?, ?, ?)";
+        jdbcTemplate.update(insertMemberSQL, memberDTO.email, memberDTO.password, memberDTO.nickname);
     }
 
-    public void update(int id, String newName) {
-        String updateMemberSQL = "Update table1 Set name=? Where id = ?";
-        jdbcTemplate.update(updateMemberSQL, newName, id);
+    public void update(String email, MemberDTO memberDTO) {
+        String updateMemberSQL = "Update table1 Set password=?, nickname=? Where email = ?";
+        jdbcTemplate.update(updateMemberSQL, memberDTO.password, memberDTO.nickname, email);
+    }
+
+    public void delete(String email) {
+        String deleteMemberSQL = "Delete From table1 Where email = ?";
+        jdbcTemplate.update(deleteMemberSQL, email);
     }
 
     public void select(int id) {
@@ -33,7 +38,5 @@ public class MemberDAO {
         else {
             selectMemberSQL += "= " + id;
         }
-
-        jdbcTemplate.queryForObject();
     }
 }
