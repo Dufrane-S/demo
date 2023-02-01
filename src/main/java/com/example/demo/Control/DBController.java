@@ -1,25 +1,29 @@
 package com.example.demo.Control;
 
 import com.example.demo.MemberDAO;
+import com.example.demo.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value="db")
 public class DBController {
     @Autowired
     private MemberDAO memberDAO;
-    @GetMapping(value="/select")
-    public String select(@RequestParam("tableName") String tableName) {
-        return tableName;
+
+    @PostMapping(value="/insert")
+    public void insert(@RequestBody MemberDTO memberDTO) {
+
+        memberDAO.insert(memberDTO);
     }
 
-    @GetMapping(value="/insert")
-    public void insert(@RequestParam("id") int id, @RequestParam("name") String name) {
+    @PostMapping(value="/delete")
+    public void delete(@RequestParam("email") String email) {
+        memberDAO.delete(email);
+    }
 
-        memberDAO.insertMember(id, name);
+    @PostMapping(value="/update")
+    public void update(@RequestParam("email") String email, @RequestBody MemberDTO memberDTO) {
+        memberDAO.update(email, memberDTO);
     }
 }
