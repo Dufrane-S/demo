@@ -26,4 +26,9 @@ public class DBController {
     public void update(@RequestParam("email") String email, @RequestBody MemberDTO memberDTO) {
         memberDAO.update(email, memberDTO);
     }
+
+    @PostMapping(value="/select")
+    public void select(@RequestParam("email") String email){
+        memberDAO.select(email);
+    }
 }

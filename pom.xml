@@ -48,7 +48,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<!-- 제어판에서 MySQL 버전 참고 -->
-			<version>8.0.31</version>
+			<version>8.0.28</version>
 		</dependency>
 		<!-- Spring JDBC -->
 		<dependency>
