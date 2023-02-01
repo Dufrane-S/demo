@@ -32,6 +32,7 @@ public class MemberDAO {
 
     public void select(String email) {
         String selectMemberSQL = "Select * from member Where email = ? ";
+        jdbcTemplate.update(selectMemberSQL,email);
 
     }
 }
