@@ -6,6 +6,12 @@ public class MemberDTO {
     String password;
     String nickname;
 
+    public MemberDTO() {
+        this.email = null;
+        this.password = null;
+        this.nickname = null;
+    }
+
     public MemberDTO(String email, String password, String nickname) {
         this.email = email;
         this.password = password;

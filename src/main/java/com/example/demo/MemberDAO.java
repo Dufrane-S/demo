@@ -2,9 +2,13 @@ package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 
 @Repository
 public class MemberDAO {
@@ -30,13 +34,19 @@ public class MemberDAO {
         jdbcTemplate.update(deleteMemberSQL, email);
     }
 
-    public void select(int id) {
-        String selectMemberSQL = "Select * from table1 Where id ";
-        if (id == -1) {
-            selectMemberSQL += "is not null";
+    class MemberMapper implements RowMapper<MemberDTO> {
+        @Override
+        public MemberDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+            return new MemberDTO(rs.getString("email"), rs.getString("password"), rs.getString("nickname"));
         }
-        else {
-            selectMemberSQL += "= " + id;
-        }
+    }
+    public MemberDTO select(String email) {
+        String selectMemberSQL = "Select * From table1 Where email = ?";
+        return jdbcTemplate.queryForObject(selectMemberSQL, new MemberMapper(), email);
+    }
+
+    public List<MemberDTO> selectAll() {
+        String selectAllMemberSQL = "Select * From table1";
+        return jdbcTemplate.query(selectAllMemberSQL, new MemberMapper());
     }
 }
