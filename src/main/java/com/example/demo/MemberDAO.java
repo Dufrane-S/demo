@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -42,7 +43,12 @@ public class MemberDAO {
     }
     public MemberDTO select(String email) {
         String selectMemberSQL = "Select * From table1 Where email = ?";
-        return jdbcTemplate.queryForObject(selectMemberSQL, new MemberMapper(), email);
+
+        try {
+            return jdbcTemplate.queryForObject(selectMemberSQL, new MemberMapper(), email);
+        } catch(IncorrectResultSizeDataAccessException e) {
+            return null;
+        }
     }
 
     public List<MemberDTO> selectAll() {

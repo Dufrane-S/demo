@@ -64,6 +64,11 @@
 			<!-- JDK 7이상, JDBC 4.1 이상이므로 dbcp2 -->
 			<version>2.9.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+			<version>3.0.2</version>
+		</dependency>
 
 	</dependencies>
 
